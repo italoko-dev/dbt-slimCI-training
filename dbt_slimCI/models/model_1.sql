@@ -1,0 +1,7 @@
+/*
+    ESSE MODELO FOI DESENVOLVIDO NA SPRINT 1
+    PORTANTO SÓ EXISTE EM PRD 
+*/
+
+
+select 1 as test
