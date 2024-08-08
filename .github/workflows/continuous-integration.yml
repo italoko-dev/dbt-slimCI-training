@@ -34,7 +34,8 @@ jobs:
       - name: Checkout source branch and diff quality
         run:  |
           git checkout ${{ github.head_ref }}
-          diff-quality --violations=sqlfluff --dialect postgres --fail-under=95 --compare-branch=origin/dev
+          sqlfluff lint models
+        # diff-quality --violations=sqlfluff --dialect postgres --fail-under=95 --compare-branch=origin/dev
       
       # - name: List files in the repository
       #   run: |
