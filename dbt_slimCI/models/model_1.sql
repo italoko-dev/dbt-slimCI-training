@@ -1,2 +1,2 @@
-
-select 1 as test
+select 
+    1 as test
