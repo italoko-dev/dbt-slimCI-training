@@ -163,3 +163,5 @@ cython_debug/
 
 dbt-venv/
 dbt-venv/*
+
+.vscode
