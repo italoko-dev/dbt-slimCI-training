@@ -18,7 +18,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-    steps:
+      #Removed steps
       - run: echo "Lint On Code."
       - run: echo "Download artifact (manifest dbt) from develop"
       - run: echo "dbt RUN select state modified+"
