@@ -24,10 +24,12 @@ jobs:
       - run: echo "dbt RUN select state modified+"
       - run: echo "dbt TEST select state modified+"
   
-  # sqlfluff-lint:
-  #   runs-on: ubuntu-latest
+  sqlfluff-lint:
+    runs-on: ubuntu-latest
 
-  #   steps:
+    steps:
+      - name: Job sqlfluff
+      - run: echo "Executando step sqlfluff"
   #   - name: Checkout repository
   #     uses: actions/checkout@v4
 
