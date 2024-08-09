@@ -44,7 +44,7 @@ jobs:
       - name: Download develop artifact    
         uses: actions/download-artifact@v4
         with:
-          name: manifest.json
+          name: manifest
       #    path: your/destination/dir
       
       - name: Display structure of downloaded files
