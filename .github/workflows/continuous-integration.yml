@@ -38,7 +38,7 @@ jobs:
       - name: Draft dbt slimCI flow
         run: |
           cd dbt_slimCI
-          dbt run
+          dbt ls
       - run: echo "Download artifact (manifest dbt) from develop"
       - run: echo "dbt RUN select state modified+"
       - run: echo "dbt TEST select state modified+"
