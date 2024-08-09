@@ -35,10 +35,21 @@ jobs:
         # diff-quality --violations=sqlfluff --fail-under=95 --compare-branch=origin/dev
 
       #Removed steps
-      - name: Draft dbt slimCI flow
-        run: |
-          cd dbt_slimCI
-          dbt ls
-      - run: echo "Download artifact (manifest dbt) from develop"
+    #  - name: Draft dbt slimCI flow
+    #    run: |
+    #      cd dbt_slimCI
+    #      dbt ls
+     # - run: echo "Download artifact (manifest dbt) from develop"
+
+      - name: Download develop artifact    
+        uses: actions/download-artifact@v4
+        with:
+          name: manifest.json
+      #    path: your/destination/dir
+      
+      - name: Display structure of downloaded files
+        run: ls -R
+     #   run: ls -R your/destination/dir
+      
       - run: echo "dbt RUN select state modified+"
       - run: echo "dbt TEST select state modified+"
