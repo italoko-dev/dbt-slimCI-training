@@ -36,6 +36,6 @@ jobs:
 
       #Removed steps
       - name: Draft dbt slimCI flow
-      - run: echo "Download artifact (manifest dbt) from develop"
+        run: echo "Download artifact (manifest dbt) from develop"
       - run: echo "dbt RUN select state modified+"
       - run: echo "dbt TEST select state modified+"
