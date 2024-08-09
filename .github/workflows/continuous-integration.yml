@@ -14,11 +14,6 @@ jobs:
         with:
           fetch-depth: 0  # Fetch all history
         
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      
-      # - name: Fetch all branches
-      #   run: git fetch --all
-        
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -26,26 +21,21 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install sqlfluff
           pip install -r requirements.txt
           cd dbt_slimCI
           dbt deps
       
-      - name: Checkout source branch and diff quality
+      - name: LINT - Checkout source branch and diff quality
         run:  |
-          git checkout ${{ github.head_ref }}
+        
           cd dbt_slimCI
           sqlfluff lint models --dialect=postgres
-        # diff-quality --violations=sqlfluff --dialect postgres --fail-under=95 --compare-branch=origin/dev
-      
-      # - name: List files in the repository
-      #   run: |
-      #     ls ${{ github.workspace }}
-      # - run: echo "🍏 This job's status is ${{ job.status }}."
+        # git checkout ${{ github.head_ref }}
+        # cd dbt_slimCI
+        # diff-quality --violations=sqlfluff --fail-under=95 --compare-branch=origin/dev
 
       #Removed steps
       - name: Draft dbt slimCI flow
-        run: echo "Lint On Code."
       - run: echo "Download artifact (manifest dbt) from develop"
       - run: echo "dbt RUN select state modified+"
       - run: echo "dbt TEST select state modified+"
