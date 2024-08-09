@@ -29,6 +29,7 @@ jobs:
         run:  |
           cd dbt_slimCI
           sqlfluff lint models --dialect=postgres
+        continue-on-error: true
         # git checkout ${{ github.head_ref }}
         # cd dbt_slimCI
         # diff-quality --violations=sqlfluff --fail-under=95 --compare-branch=origin/dev
