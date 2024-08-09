@@ -27,29 +27,24 @@ jobs:
       
       - name: LINT - Checkout source branch and diff quality
         run:  |
-        
           cd dbt_slimCI
           sqlfluff lint models --dialect=postgres
         # git checkout ${{ github.head_ref }}
         # cd dbt_slimCI
         # diff-quality --violations=sqlfluff --fail-under=95 --compare-branch=origin/dev
-
-      #Removed steps
-    #  - name: Draft dbt slimCI flow
-    #    run: |
-    #      cd dbt_slimCI
-    #      dbt ls
-     # - run: echo "Download artifact (manifest dbt) from develop"
-
-      - name: Download develop artifact    
-        uses: actions/download-artifact@v4
-        with:
-          name: manifest
-      #    path: your/destination/dir
       
-      - name: Display structure of downloaded files
-        run: ls -R
-     #   run: ls -R your/destination/dir
+      # Here we'll simulate the download artifact dbt from develop to comparison in the next step.
+      - name: SIMULATION - Download develop dbt artifact    
+        run: echo 'Download of the last manifest.json from develop'
+
+      # Here we'll simulate the dbt run
+      # To simulate, we'll use 'dbt ls' command to list models should be executed.
+      # NOTE: The static file './old-target/manifest.json' was runned only model_1.
+      - name: SIMULATION - dbt Run all files with state modified+ 
+        run: |
+          cd dbt_slimCI
+          dbt ls -s state:modified+ --state ..\old-target --profile prd --defer
+        #dbt run -s state:modified+ --state ..\old-target --profile prd --defer
       
-      - run: echo "dbt RUN select state modified+"
-      - run: echo "dbt TEST select state modified+"
+      - name: SIMULATION - dbt test all files with state modified+    
+        run: echo 'Download of the last manifest.json from develop'
